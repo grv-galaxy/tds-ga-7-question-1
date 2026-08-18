@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: TDS identity: 24f1000758@ds.study.iitm.ac.in
+      - name: "TDS identity: 24f1000758@ds.study.iitm.ac.in"
         run: echo "TDS identity: 24f1000758@ds.study.iitm.ac.in"
 
       - name: Setup Node.js
@@ -22,17 +22,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./question-1
-
-      - name: Start server in background
-        run: npm start &
-        working-directory: ./question-1
-
-      - name: Wait for server to start
-        run: sleep 3
 
       - name: Test endpoint with a valid payload
         run: |
+          npm start &
+          sleep 3
           curl -X POST http://localhost:3000/release-gate \
           -H "Content-Type: application/json" \
           -d '{
